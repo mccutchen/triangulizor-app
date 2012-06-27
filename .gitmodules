@@ -1,0 +1,6 @@
+[submodule "ext/triangulizor"]
+	path = ext/triangulizor
+	url = git://github.com/mccutchen/triangulizor.git
+[submodule "ext/gaefab"]
+	path = ext/gaefab
+	url = git://github.com/mccutchen/gaefab.git
