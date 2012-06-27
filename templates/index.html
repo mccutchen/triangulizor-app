@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Triangulizor</title>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Triangulizor</h1>
+        </header>
+        <form action="/images/" method="post">
+            <label>Image URL <input type="text" name="url"></label>
+            <label>Tile size (optional)<input type="text" name="tile_size" placeholder="auto"></label>
+            <input type="submit" value="triangulize!">
+        </form>
+        <footer>
+            <p>A dumb hack by <a href="http://twitter.com/mccutchen">Will McCutchen</a>.</p>
+        </footer>
+    </body>
+</html>
