@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Triangulizor</title>
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Triangulizor</h1>
+        </header>
+        {% if flashes %}
+            <div class="flashes">
+                {% for msg, level in flashes %}
+                    <p class="flash {{ level }}">{{ msg }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+        <footer>
+            <p>A dumb hack by <a href="http://twitter.com/mccutchen">Will McCutchen</a>.</p>
+        </footer>
+    </body>
+</html>

@@ -1,27 +1,9 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Triangulizor</title>
-        <link rel="stylesheet" type="text/css" href="/static/style.css">
-    </head>
-    <body>
-        <header>
-            <h1>Triangulizor</h1>
-        </header>
-        {% if flashes %}
-            <div class="flashes">
-                {% for msg, level in flashes %}
-                    <p class="flash {{ level }}">{{ msg }}</p>
-                {% endfor %}
-            </div>
-        {% endif %}
-        <form action="/images/" method="post">
-            <label>Image URL <input type="text" name="url" value="{{ url }}"></label>
-            <label>Tile size (optional)<input type="text" name="tile_size" placeholder="auto" value="{{ tile_size }}"></label>
-            <input type="submit" value="triangulize!">
-        </form>
-        <footer>
-            <p>A dumb hack by <a href="http://twitter.com/mccutchen">Will McCutchen</a>.</p>
-        </footer>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="/images/" method="post">
+        <label>Image URL <input type="text" name="url" value="{{ url }}"></label>
+        <label>Tile size (optional)<input type="text" name="tile_size" placeholder="auto" value="{{ tile_size }}"></label>
+        <input type="submit" value="triangulize!">
+    </form>
+{% endblock %}

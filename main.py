@@ -3,14 +3,18 @@ import json
 import logging
 import pprint
 import os
+import time
 
+from google.appengine.api import files
 from google.appengine.api import urlfetch
+
 import jinja2
 import webapp2
 import webapp2_extras.sessions
 
 from ext import triangulizor
 
+import models
 import secrets
 
 
@@ -98,9 +102,22 @@ class ImageCollectionHandler(BaseHandler):
                 self.app.config['max_file_size'] / 1024, image_size / 1024)
             return self.error(msg)
 
+        start = time.time()
         image = triangulizor.triangulize(StringIO(resp.content), tile_size)
-        self.response.headers['Content-Type'] = 'image/png'
-        image.save(self.response.out, 'png')
+        logging.info('Triangulized in %s seconds', time.time() - start)
+
+        file_name = files.blobstore.create(mime_type='image/png')
+        with files.open(file_name, 'a') as f:
+            image.save(f, 'png')
+        files.finalize(file_name)
+
+        key = models.Image(
+            blob_key=files.blobstore.get_blob_key(file_name),
+            source_url=url,
+            width=image.size[0],
+            height=image.size[1],
+            tile_size=tile_size).put()
+        return self.redirect('/images/%s' % key, code=303)
 
     def error(self, msg):
         self.session.add_flash(msg, 'error')
@@ -113,7 +130,8 @@ class ImageCollectionHandler(BaseHandler):
 
 class ImageHandler(BaseHandler):
     def get(self, key):
-        pass
+        image = models.Image.get(key)
+        return self.render('image.html', { 'image': image })
 
 
 config = {
