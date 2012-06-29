@@ -1,0 +1,17 @@
+<div class="image">
+    <img src="{{ image.url }}">
+    <table class="metadata">
+        <tr>
+            <th>Source</th>
+            <td><a href="{{ image.source_url }}"></td>
+        </tr>
+        <tr>
+            <th>Size</th>
+            <td>{{ image.width }} x {{ image.height }}</td>
+        </tr>
+        <tr>
+            <th>Tile size</th>
+            <td>{{ "auto" if image.tile_size == 0 else image.tile_size }}</td>
+        </tr>
+    </table>
+</div>

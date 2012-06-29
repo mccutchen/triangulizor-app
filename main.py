@@ -71,7 +71,8 @@ class IndexHandler(BaseHandler):
 
 class ImageCollectionHandler(BaseHandler):
     def get(self):
-        pass
+        images = models.Image.all().order('-created_at').fetch(25)
+        return self.render('images.html', { 'images': images })
 
     def post(self):
         url = self.request.get('url')
