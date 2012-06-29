@@ -8,9 +8,16 @@
         <header>
             <h1>Triangulizor</h1>
         </header>
+        {% if flashes %}
+            <div class="flashes">
+                {% for msg, level in flashes %}
+                    <p class="flash {{ level }}">{{ msg }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
         <form action="/images/" method="post">
-            <label>Image URL <input type="text" name="url"></label>
-            <label>Tile size (optional)<input type="text" name="tile_size" placeholder="auto"></label>
+            <label>Image URL <input type="text" name="url" value="{{ url }}"></label>
+            <label>Tile size (optional)<input type="text" name="tile_size" placeholder="auto" value="{{ tile_size }}"></label>
             <input type="submit" value="triangulize!">
         </form>
         <footer>
