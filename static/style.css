@@ -1,1 +1,48 @@
-style
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #fff;
+    font: 12px Menlo, Consolas, monospace;
+    margin: 2em;
+}
+
+div.image-container {
+    box-shadow: 1px 1px 10px rgba(0,0,0,.33);
+    float: left;
+    margin: 1em 1em 1em 0;
+    max-width: 512px;
+    overflow: hidden;
+}
+div.image-container img {
+    display: block;
+    max-width: 512px;
+    max-height: 512px;
+}
+div.image-container .metadata {
+    max-width: 100%;
+}
+div.image-container .metadata th, div.image-container .metadata td {
+    padding: 3px 5px;
+    white-space: nowrap;
+}
+div.image-container .metadata th {
+    text-align: right;
+    padding-left: 1em;
+}
+div.image-container .metadata td {
+    padding-right: 1em;
+}
+div.image-container .metadata tr:first-child th, div.image-container .metadata tr:first-child td {
+    padding-top: 1em;
+}
+div.image-container .metadata tr:last-child th, div.image-container .metadata tr:last-child td {
+    padding-bottom: 1em;
+}
+
+
+
+footer {
+    clear: both;
+}
